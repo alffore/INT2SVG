@@ -21,7 +21,7 @@ public:
 
 	vector<Punto> vp;
         
-        string sclave_uni; 
+    string sclave_uni; 
 
 	Poligonal(vector<Punto> vp,vector<string> vcad);
 
