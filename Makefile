@@ -13,7 +13,8 @@ LIBS=
 
 OBJ= main.o \
 	LectorINT.o \
-	Poligonal.o 
+	Poligonal.o \
+	EscalaP.o 
 	
 
 	
