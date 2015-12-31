@@ -30,7 +30,7 @@ EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimx, int dimy) {
  */
 void EscalaP::escalaPoligonales() {
 
-    for (std::vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
+    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
         escalaPoligonal(*it);
     }
 
@@ -41,7 +41,6 @@ void EscalaP::escalaPoligonales() {
  */
 void EscalaP::escalaPoligonal(Poligonal &pol) {
 
-    vector<Punto> vp = pol.vp;
 
     for (vector<Punto>::iterator it = pol.vp.begin(); it != pol.vp.end(); ++it) {
 
@@ -54,7 +53,7 @@ void EscalaP::escalaPoligonal(Poligonal &pol) {
 }
 
 /**
- * @brief Metodo que determina las dimensiones propias de los poligonos y calcula la escala y las correcciones
+ * @brief Método que determina las dimensiones propias de los poligonos y calcula la escala y las correcciones
  */
 void EscalaP::obtenDimPols() {
 
@@ -62,7 +61,7 @@ void EscalaP::obtenDimPols() {
     int cuenta = 0;
 
 
-    for (std::vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
+    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
         obtenDimPol(*it, cuenta);
         cuenta++;
     }
@@ -78,27 +77,37 @@ void EscalaP::obtenDimPols() {
 
 
     if (dimMP == dimXP) {
-        escala = dimx / dimXP;
+        escala = (double)dimx / dimXP;  
+        
+        if(escala*dimYP > (double)dimy){
+            escala=(double)dimy/dimYP;
+        }
+             
     } else {
-        escala = dimy / dimYP;
+        escala = (double)dimy / dimYP;
+        
+        if(escala*dimXP > (double)dimx){
+            escala=(double)dimx/dimXP;
+        }
     }
 
-    corx = (dimx / 2 - escala * ((xmax + xmin) / 2 - xmin));
-    cory = (dimy / 2 + escala * ((ymax + ymin) / 2 - ymin));
+    corx = ((double)dimx / 2 - escala * ((xmax + xmin) / 2 - xmin))/2;
+    cory = ((double)dimy / 2 + escala * ((ymax + ymin) / 2 - ymin));
 
 
-    cout << "dimXP: " << dimXP << " dimYP: " << dimYP << " dimMP: " << dimMP  << " escala:" << escala;
+    cout << "dimXP: " << dimXP << " dimYP: " << dimYP << " dimMP: " << dimMP  << " escala: " << escala;
     cout << " corx: " << corx << " cory: " << cory << endl;
 
 }
 
 /**
- *
+ * Metodo que calcula las dimensiones de los poligonos
  */
 void EscalaP::obtenDimPol(Poligonal &pol, int cuenta) {
 
 
-    for (vector<Punto>::iterator it = pol.vp.begin(); it != pol.vp.end(); it++) {
+
+    for (vector<Punto>::iterator it = pol.vp.begin(); it != pol.vp.end(); ++it) {
 
         if (cuenta == 0) {
             xmin = (*it).x;
@@ -117,6 +126,6 @@ void EscalaP::obtenDimPol(Poligonal &pol, int cuenta) {
 
     }
 
-
 }
+
 

@@ -42,6 +42,7 @@ private:
 
     void obtenDimPols();
     void obtenDimPol(Poligonal &pol, int cuenta);
+   
 
     void escalaPoligonales();
     void escalaPoligonal(Poligonal& pol);

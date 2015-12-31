@@ -9,6 +9,7 @@
 #include "Poligonal.h"
 #include "LectorINT.h"
 #include "EscalaP.hpp"
+#include "SalidaSVG.hpp"
 
 
 using namespace std;
@@ -54,6 +55,12 @@ int main(int argc, char *argv[]) {
     //escalamos las poligonales
     EscalaP escala(&lint.vPol, dimx, dimy);
     
+    //generamos la salida
+    SalidaSVG ssvg(string(argv[7]),cv);
+    ssvg.dimX=dimx;
+    ssvg.dimY=dimy;
+    
+    ssvg.imprimeSVG(lint.vPol);
     
     
 	return 0;	
