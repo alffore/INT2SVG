@@ -15,18 +15,21 @@ class EtiquetaU {
 	
 private:
 	
+	int c1;
+	int c2;
+
+
     vector<Poligonal>* pvPol;
 		
-	
+	void genradordeCU(void);
 	
 	
 public:
 	
-	EtiquetaU(vector<Poligonal> *pvPol);
+	EtiquetaU(vector<Poligonal> *pvPol,int c1, int c2);
 	
 	
-}
-
+};
 
 
 
