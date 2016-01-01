@@ -13,12 +13,6 @@ SalidaSVG::SalidaSVG(string sarchivo, int ce) {
     precision = 2;
     this->ce = ce;
 
-    //stringstream ss;
-    //ss << ce;
-   // this->sarchivo += string(ss.str());
-
-   // this->sarchivo += string(".jsvg");
-
     abreArchivo();
 
 }
@@ -26,13 +20,15 @@ SalidaSVG::SalidaSVG(string sarchivo, int ce) {
 
 
 
-
+/**
+* @brief Metodo que imprime un SVG 
+*/
 void SalidaSVG::imprimeSVG(vector<Poligonal>& vPol) {
 
     fssal << "<svg width=\""<<this->dimX<<"\" height=\""<<this->dimY<<"\">";
 
     for (vector<Poligonal>::iterator it = vPol.begin(); it != vPol.end(); ++it) {
-        imprimePoligonoPathL(*it);
+        imprimePoligonoPathLRel(*it);
     }
     
     fssal <<"</svg>"<<endl;
@@ -66,7 +62,7 @@ void SalidaSVG::imprimePoligonoPathL(Poligonal& Pol) {
             fssal.precision(precision);
             
             fssal <<"<path id=";
-            fssal << "\"m_" << ce << "\" ";
+            fssal << "\"m_" << Pol.sclave_uni << "\" ";
 
             fssal << "d=\"M " << fixed << xa << " " << ya << "";
 
@@ -92,6 +88,58 @@ void SalidaSVG::imprimePoligonoPathL(Poligonal& Pol) {
 
 
 }
+
+/**
+* @brief Metodo que imprime paths en coordenadas relativas
+*/
+void SalidaSVG::imprimePoligonoPathLRel(Poligonal& Pol) {
+
+    int cuenta = 0;
+
+    double xa = 0;
+    double ya = 0;
+
+    
+
+    for (vector<Punto>::iterator itp = Pol.vp.begin(); itp != Pol.vp.end(); ++itp) {
+
+        if (cuenta == 0) {
+
+            xa = (*itp).x;
+            ya = (*itp).y;
+
+            fssal.precision(precision);
+            
+            fssal <<"<path id=";
+            fssal << "\"m_" << Pol.sclave_uni << "\" ";
+
+            fssal << "d=\"M " << fixed << xa << " " << ya << "";
+
+        }
+
+        if (!checaIgD(xa, (*itp).x) || !checaIgD(ya, (*itp).y)) {
+
+            fssal << " l" << ((*itp).x-xa) << " " << ((*itp).y-ya);
+
+            xa = (*itp).x;
+            ya = (*itp).y;
+
+        }
+
+        cuenta++;
+
+    }
+
+
+        if(cuenta>0){
+            fssal << " z\" />" << endl;
+        }
+
+
+}
+
+
+
 
 /**
  *

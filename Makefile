@@ -15,7 +15,9 @@ OBJ= main.o \
 	LectorINT.o \
 	Poligonal.o \
 	EscalaP.o \
-	SalidaSVG.o 
+	SalidaSVG.o \
+	GenCU.o \
+	ClaveU.o
 	
 
 	

@@ -50,7 +50,7 @@ private:
  
 
     void imprimePoligonoPathL(Poligonal& Pol);
-    
+    void imprimePoligonoPathLRel(Poligonal& Pol);
     
     
 

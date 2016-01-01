@@ -10,7 +10,9 @@
 #include "LectorINT.h"
 #include "EscalaP.hpp"
 #include "SalidaSVG.hpp"
+#include "GenCU.h"
 
+#define SPATH "./salidas/"
 
 using namespace std;
 
@@ -54,6 +56,14 @@ int main(int argc, char *argv[]) {
     
     //escalamos las poligonales
     EscalaP escala(&lint.vPol, dimx, dimy);
+    
+    
+    //generamos la clave unica para poligonos
+    GenCU mgencu(string(SPATH) + string(argv[4]) + string(".bdrep"), c1,c2);
+    mgencu.generaCUPol(&lint.vPol);
+    mgencu.escribeArchivo();
+    
+    
     
     //generamos la salida
     SalidaSVG ssvg(string(argv[7]),cv);
