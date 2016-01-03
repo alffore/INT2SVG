@@ -24,6 +24,8 @@ public:
     string sclave_uni; 
 
 	Poligonal(vector<Punto> vp,vector<string> vcad);
+	
+	bool ignorar;
 
 };
 

@@ -2,6 +2,7 @@
 #define ESCALAP_HPP
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -18,20 +19,20 @@ private:
     vector<Poligonal>* pvPol;
 
     //dimensiones requeridas para el mapa en pixeles
-    int dimx;
-    int dimy;
+    double dimxp;
+    double dimyp;
 
 
     //vertices del mapa
-    double xmax, xmin;
-    double ymax, ymin;
+    double xgmax, xgmin;
+    double ygmax, ygmin;
 
     //dimensiones en coordenadas propias
-    double dimXP;
-    double dimYP;
+    double dimXG;
+    double dimYG;
 
     //dimension maxima
-    double dimMP;
+    double dimMG;
 
     //factor de escala
     double escala;
@@ -42,7 +43,7 @@ private:
 
     void obtenDimPols();
     void obtenDimPol(Poligonal &pol, int cuenta);
-   
+
 
     void escalaPoligonales();
     void escalaPoligonal(Poligonal& pol);
@@ -50,6 +51,9 @@ private:
 
 public:
     EscalaP(vector<Poligonal>* pvPol, int dimx, int dimy);
+
+
+    void impParametrosE(string sarchivo);
 
 };
 

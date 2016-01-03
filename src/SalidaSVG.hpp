@@ -51,7 +51,7 @@ private:
 
     void imprimePoligonoPathL(Poligonal& Pol);
     void imprimePoligonoPathLRel(Poligonal& Pol);
-    
+    void imprimePoligonoPolyL(Poligonal& Pol);
     
 
     bool checaIgD(double d1, double d2);

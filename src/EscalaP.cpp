@@ -5,19 +5,19 @@ using namespace std;
 /**
  * Constructor de maquina para escalar poligonos
  * @param pvPol
- * @param dimx
- * @param dimy
+ * @param dimxp
+ * @param dimyp
  */
-EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimx, int dimy) {
+EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimxp, int dimyp) {
 
     this->pvPol = pvPol;
-    this->dimx = dimx;
-    this->dimy = dimy;
+    this->dimxp = (double)dimxp;
+    this->dimyp = (double)dimyp;
 
-    xmax=0;
-    xmin=0;
-    ymax=0;
-    ymin=0;
+    xgmax=0;
+    xgmin=0;
+    ygmax=0;
+    ygmin=0;
     
 
     obtenDimPols();
@@ -31,7 +31,9 @@ EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimx, int dimy) {
 void EscalaP::escalaPoligonales() {
 
     for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
-        escalaPoligonal(*it);
+        if(!it->ignorar){
+            escalaPoligonal(*it);
+        }
     }
 
 }
@@ -44,8 +46,13 @@ void EscalaP::escalaPoligonal(Poligonal &pol) {
 
     for (vector<Punto>::iterator it = pol.vp.begin(); it != pol.vp.end(); ++it) {
 
-        (*it).x = escala * ((*it).x - xmin) + corx;
-        (*it).y = -escala * ((*it).y - ymin) + cory;
+        if(it->x < xgmin){
+            cout << "Error en limites:"<< it->x <<" < "<<xgmin<<endl;
+        }
+
+
+        it->x = escala * (it->x - xgmin) + corx;
+        it->y = -escala * (it->y - ygmin) + cory;
 
     }
 
@@ -59,73 +66,108 @@ void EscalaP::obtenDimPols() {
 
     cout << "DEBUG: obtenDimPols"<<endl;
     int cuenta = 0;
+    
+    double escala_x=0;
+    double escala_y=0;
+    
 
-
-    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
-        obtenDimPol(*it, cuenta);
-        cuenta++;
+    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {        
+        if(!it->ignorar){
+            obtenDimPol(*it, cuenta);            
+            cuenta++;
+        }
     }
 
-
-    cout <<"max x: "<< xmax<<" min x: "<<xmin<<endl;
-    cout <<"max y: "<< ymax<<" min y: "<<ymin<<endl;
+    cout <<"max x: "<< xgmax<<" min x: "<<xgmin<<endl;
+    cout <<"max y: "<< ygmax<<" min y: "<<ygmin<<endl;
     
-    dimXP = xmax - xmin;
-    dimYP = ymax - ymin;
+    dimXG = xgmax - xgmin;
+    dimYG = ygmax - ygmin;
 
-    dimMP = (dimXP < dimYP) ? dimYP : dimXP;
+    dimMG = (dimXG < dimYG) ? dimYG : dimXG;
 
 
-    if (dimMP == dimXP) {
-        escala = (double)dimx / dimXP;  
+        escala_x=dimxp / dimXG; 
+        escala_y=dimyp / dimYG;
+
+    if (dimMG == dimXG) {
+        escala = dimxp / dimXG;  
         
-        if(escala*dimYP > (double)dimy){
-            escala=(double)dimy/dimYP;
+        if(escala*dimYG > dimyp){
+            escala = dimyp / dimYG;
         }
              
     } else {
-        escala = (double)dimy / dimYP;
+        escala = dimyp / dimYG;
         
-        if(escala*dimXP > (double)dimx){
-            escala=(double)dimx/dimXP;
+        if(escala*dimXG > dimxp){
+            escala= dimxp / dimXG;
         }
     }
 
-    corx = ((double)dimx / 2 - escala * ((xmax + xmin) / 2 - xmin))/2;
-    cory = ((double)dimy / 2 + escala * ((ymax + ymin) / 2 - ymin));
+    
+  
 
+    corx = (dimxp - escala * dimXG) / 2.0 ;
+    cory = (dimyp + escala * dimYG) / 2.0 ;
+    
+ 
+    
 
-    cout << "dimXP: " << dimXP << " dimYP: " << dimYP << " dimMP: " << dimMP  << " escala: " << escala;
-    cout << " corx: " << corx << " cory: " << cory << endl;
+    cout <<"dimxp: "<<dimxp<<" dimyp: "<<dimyp;
+    cout << " dimXG: " << dimXG << " dimYG: " << dimYG << " dimMG: " << dimMG  << " escala: " << escala<< " escala X: " << escala_x<< " escala y: " << escala_y<<endl;
+    cout << "corx: " << corx << " cory: " << cory << endl;
 
 }
 
 /**
- * Metodo que calcula las dimensiones de los poligonos
+ * @brief Método que calcula las dimensiones de los poligonos
  */
 void EscalaP::obtenDimPol(Poligonal &pol, int cuenta) {
-
-
 
     for (vector<Punto>::iterator it = pol.vp.begin(); it != pol.vp.end(); ++it) {
 
         if (cuenta == 0) {
-            xmin = (*it).x;
-            ymin = (*it).y;
+            xgmin = it->x;
+            ygmin = it->y;
 
-            xmax = xmin;
-            ymax = ymin;
+            xgmax = xgmin;
+            ygmax = ygmin;
+            cuenta++;
         }
 
 
-        if ((*it).x < xmin)xmin = (*it).x;
-        if ((*it).y < ymin)ymin = (*it).y;
+        if ((*it).x < xgmin)xgmin = (*it).x;
+        if ((*it).y < ygmin)ygmin = (*it).y;
 
-        if ((*it).x > xmax)xmax = (*it).x;
-        if ((*it).y > ymax)ymax = (*it).y;
+        if ((*it).x > xgmax)xgmax = (*it).x;
+        if ((*it).y > ygmax)ygmax = (*it).y;
 
     }
 
 }
 
+
+/**
+* @brief Método que escribe parametros de transformación de escala
+*/
+void EscalaP::impParametrosE(string sarchivo){
+        
+    ofstream fssal;
+    fssal.open(sarchivo.c_str());
+    
+    
+    fssal <<"xgmin|"<<xgmin<<endl;
+    fssal <<"xgmax|"<<xgmax<<endl;
+    
+    fssal <<"ygmin|"<<ygmin<<endl;
+    fssal <<"ygmax|"<<ygmax<<endl;
+        
+    fssal <<"escala|"<<escala<<endl;
+    
+    fssal <<"corx|"<<corx<<endl;
+    fssal <<"cory|"<<cory<<endl;
+    
+    fssal.close();
+}
 

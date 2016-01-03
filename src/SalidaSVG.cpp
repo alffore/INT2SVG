@@ -28,7 +28,9 @@ void SalidaSVG::imprimeSVG(vector<Poligonal>& vPol) {
     fssal << "<svg width=\""<<this->dimX<<"\" height=\""<<this->dimY<<"\">";
 
     for (vector<Poligonal>::iterator it = vPol.begin(); it != vPol.end(); ++it) {
-        imprimePoligonoPathLRel(*it);
+        if(!it->ignorar){
+            imprimePoligonoPathL(*it);
+        }
     }
     
     fssal <<"</svg>"<<endl;
@@ -80,7 +82,6 @@ void SalidaSVG::imprimePoligonoPathL(Poligonal& Pol) {
         cuenta++;
 
     }
-
 
         if(cuenta>0){
             fssal << " z\" />" << endl;
@@ -137,6 +138,57 @@ void SalidaSVG::imprimePoligonoPathLRel(Poligonal& Pol) {
 
 
 }
+
+
+/**
+ * 
+ * @param Pol
+ */
+void SalidaSVG::imprimePoligonoPolyL(Poligonal& Pol) {
+
+    int cuenta = 0;
+
+    double xa = 0;
+    double ya = 0;
+
+    
+
+    for (vector<Punto>::iterator itp = Pol.vp.begin(); itp != Pol.vp.end(); ++itp) {
+
+        if (cuenta == 0) {
+
+            xa = (*itp).x;
+            ya = (*itp).y;
+
+            fssal.precision(precision);
+            
+            fssal <<"<polygon id="<< "\"m_" << Pol.sclave_uni << "\" ";
+
+            fssal << "points=\"" << fixed << xa << " " << ya << " ";
+
+        }
+
+        if (!checaIgD(xa, (*itp).x) || !checaIgD(ya, (*itp).y)) {
+
+            fssal << ((*itp).x) << " " << ((*itp).y)<<" ";
+
+            xa = (*itp).x;
+            ya = (*itp).y;
+
+        }
+
+        cuenta++;
+
+    }
+
+        if(cuenta>0){
+            fssal << "\" />" << endl;
+        }
+
+
+}
+
+
 
 
 

@@ -11,6 +11,8 @@
 #include "EscalaP.hpp"
 #include "SalidaSVG.hpp"
 #include "GenCU.h"
+#include "LectorRes.h"
+
 
 #define SPATH "./salidas/"
 
@@ -53,10 +55,20 @@ int main(int argc, char *argv[]) {
 
     cout << "Cantidad de poligonos recuperados: " << lint.vPol.size() << endl;
 	
+    //determinamos las restricciones para los poligonos
+    LectorRes lres(string(argv[8]),cv);
+    if(lres.bposeeR){
+        cout << "Posee restricciones: "<<cv<<endl;
+        
+        lres.eliminaPolRes(&lint.vPol);
+        
+        cout << "Cantidad de poligonos eliminados: "<<lres.numPolElim<<endl;
+    }
+    
     
     //escalamos las poligonales
     EscalaP escala(&lint.vPol, dimx, dimy);
-    
+    escala.impParametrosE(string(SPATH) + string(argv[4]) + string(".pesc"));
     
     //generamos la clave unica para poligonos
     GenCU mgencu(string(SPATH) + string(argv[4]) + string(".bdrep"), c1,c2);
