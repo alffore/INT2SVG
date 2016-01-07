@@ -163,6 +163,9 @@ void EscalaP::impParametrosE(string sarchivo){
     fssal <<"ygmin|"<<ygmin<<endl;
     fssal <<"ygmax|"<<ygmax<<endl;
         
+    fssal <<"dimxp|"<<dimxp<<endl;
+    fssal <<"dimyp|"<<dimyp<<endl;   
+        
     fssal <<"escala|"<<escala<<endl;
     
     fssal <<"corx|"<<corx<<endl;

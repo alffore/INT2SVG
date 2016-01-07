@@ -25,15 +25,26 @@ SalidaSVG::SalidaSVG(string sarchivo, int ce) {
 */
 void SalidaSVG::imprimeSVG(vector<Poligonal>& vPol) {
 
-    fssal << "<svg width=\""<<this->dimX<<"\" height=\""<<this->dimY<<"\">";
+fssal << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" << endl;
+//fssal << "<?xml-stylesheet href=\"mapas_svg.css\" type=\"text/css\"?>" << endl;
+fssal << "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\""<<endl;
+fssal << "\t\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">"<<endl;
 
+    fssal << "<svg width=\""<<this->dimX<<"\" height=\""<<this->dimY<<"\" viewBox=\"0 0 "<<dimX<<" "<<dimY<<"\" "<<endl;
+    fssal<<"\t xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">"<<endl;
+    
+    fssal << "<defs><style type=\"text/css\">";
+    fssal << "<![CDATA[ "; 
+    fssal << "path{ fill: grey; stroke: #000000; stroke-width: .25 }";
+    fssal<<" ]]></style></defs><g>"<<endl;
+    
     for (vector<Poligonal>::iterator it = vPol.begin(); it != vPol.end(); ++it) {
         if(!it->ignorar){
             imprimePoligonoPathL(*it);
         }
     }
     
-    fssal <<"</svg>"<<endl;
+    fssal <<"</g></svg>"<<endl;
 
 }
 
