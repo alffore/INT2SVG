@@ -35,7 +35,7 @@ fssal << "\t\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">"<<endl;
     
     fssal << "<defs><style type=\"text/css\">";
     fssal << "<![CDATA[ "; 
-    fssal << "path{ fill: grey; stroke: #000000; stroke-width: .25 }";
+    fssal << "path{ fill: grey; stroke: #000000; stroke-width: .20 }";
     fssal<<" ]]></style></defs><g>"<<endl;
     
     for (vector<Poligonal>::iterator it = vPol.begin(); it != vPol.end(); ++it) {
