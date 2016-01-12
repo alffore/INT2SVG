@@ -34,6 +34,7 @@ void GenCU::generaCUPol(vector<Poligonal>* pvPol) {
     int valor1,valor2;
     int cuenta;
 
+if(campo2!=campo1){
     for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {       
         
         valor1 = atoi((it->vcad[campo1]).c_str());
@@ -47,7 +48,26 @@ void GenCU::generaCUPol(vector<Poligonal>* pvPol) {
         it->sclave_uni = ss.str();
         
     }
+}else{
+    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {       
+        
+        valor1 = atoi((it->vcad[campo1]).c_str());
+        
+
+        cuenta = existeCU(valor1*1000);
+
+        stringstream ss;
+        ss << (valor1*1000) << "-" << cuenta;
+
+        it->sclave_uni = ss.str();
+        
+    }
+    
 }
+}
+
+
+
 
 /**
  * Método que escribe el archivo con los poligonos duplicadosy su conteo

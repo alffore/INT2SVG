@@ -55,29 +55,35 @@ int main(int argc, char *argv[]) {
 
     cout << "Cantidad de poligonos recuperados: " << lint.vPol.size() << endl;
 	
-    //determinamos las restricciones para los poligonos
-    LectorRes lres(string(argv[8]),cv);
-    if(lres.bposeeR){
-        cout << "Posee restricciones: "<<cv<<endl;
-        
-        lres.eliminaPolRes(&lint.vPol);
-        
-        cout << "Cantidad de poligonos eliminados: "<<lres.numPolElim<<endl;
+    //determinamos las restricciones para los poligonos solo caso municipal
+    if(c1!=c2){
+        LectorRes lres(string(argv[8]),cv);
+        if(lres.bposeeR){
+            cout << "Posee restricciones: "<<cv<<endl;
+            
+            lres.eliminaPolRes(&lint.vPol);
+            
+            cout << "Cantidad de poligonos eliminados: "<<lres.numPolElim<<endl;
+        }
     }
     
-    
     //escalamos las poligonales
+    cout << "Escalamos poligonos"<<endl;
     EscalaP escala(&lint.vPol, dimx, dimy);
     escala.impParametrosE(string(SPATH) + string(argv[4]) + string(".pesc"));
     
+    
     //generamos la clave unica para poligonos
-    GenCU mgencu(string(SPATH) + string(argv[4]) + string(".bdrep"), c1,c2);
-    mgencu.generaCUPol(&lint.vPol);
-    mgencu.escribeArchivo();
+    cout << "Generamos claves unicas para poligonos"<<endl;
+    
+        GenCU mgencu(string(SPATH) + string(argv[4]) + string(".bdrep"), c1,c2);
+        mgencu.generaCUPol(&lint.vPol);
+        mgencu.escribeArchivo();
     
     
     
     //generamos la salida
+    cout << "Generamos SVG"<<endl;
     SalidaSVG ssvg(string(argv[7]),cv);
     ssvg.dimX=dimx;
     ssvg.dimY=dimy;

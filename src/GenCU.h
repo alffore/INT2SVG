@@ -26,6 +26,7 @@ class GenCU {
 public:
     GenCU(string sarchivo, int campo1, int campo2);
 
+
     virtual ~GenCU();
 
     void generaCUPol(vector<Poligonal>* pvPol);
