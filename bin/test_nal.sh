@@ -8,8 +8,10 @@ make clean
 
 
 
+cd salidas
+find ./ -size 0b -delete
 
 
-cd salidas750
+cd ../salidas750
 find ./ -size 0b -delete
 
