@@ -6,20 +6,19 @@
  */
 
 #ifndef CLAVEU_H
-#define	CLAVEU_H
+#define CLAVEU_H
 
 
 
 using namespace std;
 
-
 class ClaveU {
 public:
     int clave;
     int cantidad;
-    
+
     ClaveU(int clave);
 };
 
-#endif	/* CLAVEU_H */
+#endif /* CLAVEU_H */
 

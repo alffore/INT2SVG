@@ -11,14 +11,14 @@ using namespace std;
 EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimxp, int dimyp) {
 
     this->pvPol = pvPol;
-    this->dimxp = (double)dimxp;
-    this->dimyp = (double)dimyp;
+    this->dimxp = (double) dimxp;
+    this->dimyp = (double) dimyp;
 
-    xgmax=0;
-    xgmin=0;
-    ygmax=0;
-    ygmin=0;
-    
+    xgmax = 0;
+    xgmin = 0;
+    ygmax = 0;
+    ygmin = 0;
+
 
     obtenDimPols();
     escalaPoligonales();
@@ -31,7 +31,7 @@ EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimxp, int dimyp) {
 void EscalaP::escalaPoligonales() {
 
     for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
-        if(!it->ignorar){
+        if (!it->ignorar) {
             escalaPoligonal(*it);
         }
     }
@@ -46,8 +46,8 @@ void EscalaP::escalaPoligonal(Poligonal &pol) {
 
     for (vector<Punto>::iterator it = pol.vp.begin(); it != pol.vp.end(); ++it) {
 
-        if(it->x < xgmin){
-            cout << "Error en limites:"<< it->x <<" < "<<xgmin<<endl;
+        if (it->x < xgmin) {
+            cout << "Error en limites:" << it->x << " < " << xgmin << endl;
         }
 
 
@@ -64,58 +64,58 @@ void EscalaP::escalaPoligonal(Poligonal &pol) {
  */
 void EscalaP::obtenDimPols() {
 
-    cout << "DEBUG: obtenDimPols"<<endl;
+    cout << "DEBUG: obtenDimPols" << endl;
     int cuenta = 0;
-    
-    double escala_x=0;
-    double escala_y=0;
-    
 
-    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {        
-        if(!it->ignorar){
-            obtenDimPol(*it, cuenta);            
+    double escala_x = 0;
+    double escala_y = 0;
+
+
+    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
+        if (!it->ignorar) {
+            obtenDimPol(*it, cuenta);
             cuenta++;
         }
     }
 
-    cout <<"max x: "<< xgmax<<" min x: "<<xgmin<<endl;
-    cout <<"max y: "<< ygmax<<" min y: "<<ygmin<<endl;
-    
+    cout << "max x: " << xgmax << " min x: " << xgmin << endl;
+    cout << "max y: " << ygmax << " min y: " << ygmin << endl;
+
     dimXG = xgmax - xgmin;
     dimYG = ygmax - ygmin;
 
     dimMG = (dimXG < dimYG) ? dimYG : dimXG;
 
 
-        escala_x=dimxp / dimXG; 
-        escala_y=dimyp / dimYG;
+    escala_x = dimxp / dimXG;
+    escala_y = dimyp / dimYG;
 
     if (dimMG == dimXG) {
-        escala = dimxp / dimXG;  
-        
-        if(escala*dimYG > dimyp){
+        escala = dimxp / dimXG;
+
+        if (escala * dimYG > dimyp) {
             escala = dimyp / dimYG;
         }
-             
+
     } else {
         escala = dimyp / dimYG;
-        
-        if(escala*dimXG > dimxp){
-            escala= dimxp / dimXG;
+
+        if (escala * dimXG > dimxp) {
+            escala = dimxp / dimXG;
         }
     }
 
-    
-  
 
-    corx = (dimxp - escala * dimXG) / 2.0 ;
-    cory = (dimyp + escala * dimYG) / 2.0 ;
-    
- 
-    
 
-    cout <<"dimxp: "<<dimxp<<" dimyp: "<<dimyp;
-    cout << " dimXG: " << dimXG << " dimYG: " << dimYG << " dimMG: " << dimMG  << " escala: " << escala<< " escala X: " << escala_x<< " escala y: " << escala_y<<endl;
+
+    corx = (dimxp - escala * dimXG) / 2.0;
+    cory = (dimyp + escala * dimYG) / 2.0;
+
+
+
+
+    cout << "dimxp: " << dimxp << " dimyp: " << dimyp;
+    cout << " dimXG: " << dimXG << " dimYG: " << dimYG << " dimMG: " << dimMG << " escala: " << escala << " escala X: " << escala_x << " escala y: " << escala_y << endl;
     cout << "corx: " << corx << " cory: " << cory << endl;
 
 }
@@ -147,30 +147,29 @@ void EscalaP::obtenDimPol(Poligonal &pol, int cuenta) {
 
 }
 
-
 /**
-* @brief Método que escribe parametros de transformación de escala
-*/
-void EscalaP::impParametrosE(string sarchivo){
-        
+ * @brief Método que escribe parametros de transformación de escala
+ */
+void EscalaP::impParametrosE(string sarchivo) {
+
     ofstream fssal;
     fssal.open(sarchivo.c_str());
-    
-    
-    fssal <<"xgmin|"<<xgmin<<endl;
-    fssal <<"xgmax|"<<xgmax<<endl;
-    
-    fssal <<"ygmin|"<<ygmin<<endl;
-    fssal <<"ygmax|"<<ygmax<<endl;
-        
-    fssal <<"dimxp|"<<dimxp<<endl;
-    fssal <<"dimyp|"<<dimyp<<endl;   
-        
-    fssal <<"escala|"<<escala<<endl;
-    
-    fssal <<"corx|"<<corx<<endl;
-    fssal <<"cory|"<<cory<<endl;
-    
+
+
+    fssal << "xgmin|" << xgmin << endl;
+    fssal << "xgmax|" << xgmax << endl;
+
+    fssal << "ygmin|" << ygmin << endl;
+    fssal << "ygmax|" << ygmax << endl;
+
+    fssal << "dimxp|" << dimxp << endl;
+    fssal << "dimyp|" << dimyp << endl;
+
+    fssal << "escala|" << escala << endl;
+
+    fssal << "corx|" << corx << endl;
+    fssal << "cory|" << cory << endl;
+
     fssal.close();
 }
 

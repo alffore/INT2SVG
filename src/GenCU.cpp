@@ -30,54 +30,52 @@ GenCU::~GenCU() {
  * @param pvPol
  */
 void GenCU::generaCUPol(vector<Poligonal>* pvPol) {
-    cout << "DEBUG: generaCUPol"<<endl;
-    int valor1,valor2;
+    cout << "DEBUG: generaCUPol" << endl;
+    int valor1, valor2;
     int cuenta;
 
-if(campo2!=campo1){
-    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {       
-        
-        valor1 = atoi((it->vcad[campo1]).c_str());
-        valor2 = atoi((it->vcad[campo2]).c_str());
+    if (campo2 != campo1) {
+        for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
 
-        cuenta = existeCU(valor1*1000+valor2);
+            valor1 = atoi((it->vcad[campo1]).c_str());
+            valor2 = atoi((it->vcad[campo2]).c_str());
 
-        stringstream ss;
-        ss << (valor1*1000+valor2) << "-" << cuenta;
+            cuenta = existeCU(valor1 * 1000 + valor2);
 
-        it->sclave_uni = ss.str();
-        
+            stringstream ss;
+            ss << (valor1 * 1000 + valor2) << "-" << cuenta;
+
+            it->sclave_uni = ss.str();
+
+        }
+    } else {
+        for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
+
+            valor1 = atoi((it->vcad[campo1]).c_str());
+
+
+            cuenta = existeCU(valor1 * 1000);
+
+            stringstream ss;
+            ss << (valor1 * 1000) << "-" << cuenta;
+
+            it->sclave_uni = ss.str();
+
+        }
+
     }
-}else{
-    for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {       
-        
-        valor1 = atoi((it->vcad[campo1]).c_str());
-        
-
-        cuenta = existeCU(valor1*1000);
-
-        stringstream ss;
-        ss << (valor1*1000) << "-" << cuenta;
-
-        it->sclave_uni = ss.str();
-        
-    }
-    
 }
-}
-
-
-
 
 /**
- * Método que escribe el archivo con los poligonos duplicadosy su conteo
+ * Método que escribe el archivo con los poligonos duplicados y su conteo
  */
 void GenCU::escribeArchivo() {
     ofstream fssal;
     fssal.open(sarchivo.c_str());
+    cout << "CU: " << sarchivo << endl;
 
     for (vector<ClaveU>::iterator it = vcla.begin(); it != vcla.end(); ++it) {
-        if(it->cantidad>1){
+        if (it->cantidad > 1) {
             fssal << it->clave << "|" << it->cantidad << endl;
         }
     }
@@ -86,7 +84,7 @@ void GenCU::escribeArchivo() {
 }
 
 /**
- * Metodo que determina si existe una clave regresando la posición acumulada de la actual clave, en su caso crea al objeto ClaveU
+ * Método que determina si existe una clave regresando la posición acumulada de la actual clave, en su caso crea al objeto ClaveU
  * @param clave
  * @return La cantidad de veces que exite la clave
  * @see ClaveU

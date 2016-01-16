@@ -130,8 +130,6 @@ Punto LectorRes::parseCoord(string scad){
 */
 void LectorRes::eliminaPolRes(vector<Poligonal> * pvPol){
 	
-	
-	
 	for (vector<Poligonal>::iterator it = pvPol->begin(); it != pvPol->end(); ++it) {
 			
 		if(poligonalContenido(*it)){			
@@ -139,8 +137,6 @@ void LectorRes::eliminaPolRes(vector<Poligonal> * pvPol){
 			numPolElim++;
 		}
 	}
-	
-	
 	
 }
 

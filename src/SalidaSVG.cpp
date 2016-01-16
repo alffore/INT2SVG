@@ -200,10 +200,6 @@ void SalidaSVG::imprimePoligonoPolyL(Poligonal& Pol) {
 }
 
 
-
-
-
-
 /**
  *
  */
