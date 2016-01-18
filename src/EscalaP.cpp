@@ -106,12 +106,8 @@ void EscalaP::obtenDimPols() {
     }
 
 
-
-
     corx = (dimxp - escala * dimXG) / 2.0;
     cory = (dimyp + escala * dimYG) / 2.0;
-
-
 
 
     cout << "dimxp: " << dimxp << " dimyp: " << dimyp;

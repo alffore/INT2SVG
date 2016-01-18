@@ -5,7 +5,6 @@
 #include <sstream>
 
 
-
 #include "Poligonal.h"
 #include "LectorINT.h"
 #include "EscalaP.hpp"
