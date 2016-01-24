@@ -6,7 +6,7 @@ make clean
 for i in {1..32}
 do
 
-./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 1000 800 ./salidas1000/$i.svg ./bin/excepcion_mun.txt
+./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 950 750 ./salidas950/$i.svg ./bin/excepcion_mun.txt
 
 done
 
@@ -14,7 +14,7 @@ done
 for i in {1..32}
 do
 
-./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 750 750 ./salidas750/$i.svg ./bin/excepcion_mun.txt
+./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 714 750 ./salidas714/$i.svg ./bin/excepcion_mun.txt
 
 done
 
@@ -22,7 +22,7 @@ done
 for i in {1..32}
 do
 
-./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 600 600 ./salidas600/$i.svg ./bin/excepcion_mun.txt
+./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 590 600 ./salidas590/$i.svg ./bin/excepcion_mun.txt
 
 done
 
@@ -30,18 +30,18 @@ done
 for i in {1..32}
 do
 
-./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 310 310 ./salidas310/$i.svg ./bin/excepcion_mun.txt
+./bin/int2svg.exe ../INTS_MEXICO/mgm2013v6_2.int 3 4 $i 334 400 ./salidas334/$i.svg ./bin/excepcion_mun.txt
 
 done
 
-cd ./salidas1000
+cd ./salidas950
 find ./ -size 0b -delete
 
-cd ../salidas750
+cd ../salidas714
 find ./ -size 0b -delete
 
-cd ../salidas600
+cd ../salidas590
 find ./ -size 0b -delete
 
-cd ../salidas310
+cd ../salidas334
 find ./ -size 0b -delete
