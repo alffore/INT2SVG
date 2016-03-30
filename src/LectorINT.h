@@ -20,30 +20,30 @@ using namespace std;
 class LectorINT {
 public:
 
-    vector<Poligonal> vPol;
+  vector<Poligonal> vPol;
 
-    LectorINT(string sarchivo, int campo1, int campo2, int campov);
+  LectorINT(string sarchivo, int campo1, int campo2, int campov);
 
-    static void split(vector<string>& theStringVector, const string& theString, const string& theDelimiter);    
+  static void split(vector<string>& theStringVector, const string& theString, const string& theDelimiter);
 
 private:
 
-    string sarchivo;
+  string sarchivo;
 
-    int campo1;
-    int campo2;
-    int campov;
+  int campo1;
+  int campo2;
+  int campov;
 
-    void inicializador(void);
+  void inicializador(void);
 
-    void parser(string scad);
+  void parser(string scad);
 
-//    void split(vector<string>& theStringVector, const string& theString, const string& theDelimiter);
+  //    void split(vector<string>& theStringVector, const string& theString, const string& theDelimiter);
 
-    void parserSPunto(vector<Punto>& vP, const string & scad);
+  void parserSPunto(vector<Punto>& vP, const string & scad);
 
-    
-    static bool ordenadorP(const Poligonal& p1, const Poligonal& p2);
+
+  static bool ordenadorP(const Poligonal& p1, const Poligonal& p2);
 };
 
 #endif

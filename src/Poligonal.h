@@ -20,11 +20,11 @@ public:
 	vector<string> vcad;
 
 	vector<Punto> vp;
-        
-    string sclave_uni; 
+
+	string sclave_uni;
 
 	Poligonal(vector<Punto> vp,vector<string> vcad);
-	
+
 	bool ignorar;
 
 };

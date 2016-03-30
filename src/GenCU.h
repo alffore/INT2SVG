@@ -1,9 +1,9 @@
-/* 
- * File:   GenCU.h
- * Author: alfonso
- *
- * Created on 5 de julio de 2015, 11:04 AM
- */
+/*
+* File:   GenCU.h
+* Author: alfonso
+*
+* Created on 5 de julio de 2015, 11:04 AM
+*/
 
 #ifndef GENCU_H
 #define	GENCU_H
@@ -24,26 +24,25 @@ using namespace std;
 
 class GenCU {
 public:
-    GenCU(string sarchivo, int campo1, int campo2);
+  GenCU(string sarchivo, int campo1, int campo2);
 
 
-    virtual ~GenCU();
+  virtual ~GenCU();
 
-    void generaCUPol(vector<Poligonal>* pvPol);
-    void escribeArchivo();
-    
-    
+  void generaCUPol(vector<Poligonal>* pvPol);
+  void escribeArchivo();
+
+
 private:
-    string sarchivo;
-    int campo1;
-    int campo2;
-    
-    vector<ClaveU> vcla;
+  string sarchivo;
+  int campo1;
+  int campo2;
 
-    int existeCU(int clave);
+  vector<ClaveU> vcla;
+
+  int existeCU(int clave);
 
 
 };
 
 #endif	/* GENCU_H */
-

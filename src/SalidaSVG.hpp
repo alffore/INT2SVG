@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include <sstream> 
+#include <sstream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
@@ -21,40 +21,40 @@ using namespace std;
 class SalidaSVG {
 public:
 
-    int dimX;
-    int dimY;
+  int dimX;
+  int dimY;
 
 
-    SalidaSVG(string sarchivo,int ce);
+  SalidaSVG(string sarchivo,int ce);
 
 
-        
-    void imprimeSVG(vector<Poligonal>& vPol);
 
-    virtual ~SalidaSVG();
+  void imprimeSVG(vector<Poligonal>& vPol);
+
+  virtual ~SalidaSVG();
 
 private:
 
-    string sarchivo;
-    ofstream fssal;
+  string sarchivo;
+  ofstream fssal;
 
-    int precision;
+  int precision;
 
-    int ce;
-    
-    void abreArchivo();
+  int ce;
 
-    void cierraArchivo();
+  void abreArchivo();
+
+  void cierraArchivo();
 
 
- 
 
-    void imprimePoligonoPathL(Poligonal& Pol);
-    void imprimePoligonoPathLRel(Poligonal& Pol);
-    void imprimePoligonoPolyL(Poligonal& Pol);
-    
 
-    bool checaIgD(double d1, double d2);
+  void imprimePoligonoPathL(Poligonal& Pol);
+  void imprimePoligonoPathLRel(Poligonal& Pol);
+  void imprimePoligonoPolyL(Poligonal& Pol);
+
+
+  bool checaIgD(double d1, double d2);
 };
 
 
