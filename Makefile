@@ -5,9 +5,9 @@
 
 CC= g++ -c
 
-CLINKER= g++ -lm -o 
+CLINKER= g++ -lm -o
 
-CFLAGS= -O2  -Wall
+CFLAGS= -O2  -Wall -std=c++11
 
 LIBS=
 
@@ -19,10 +19,11 @@ OBJ= main.o \
 	GenCU.o \
 	ClaveU.o \
 	LectorRes.o \
-	Restriccion.o
-	
+	Restriccion.o \
+	EscalaPmin.o
 
-	
+
+
 
 DIR_SRC= ./src/
 DIR_BIN= ./bin/
@@ -35,14 +36,12 @@ all: clean $(OBJ)
 
 %.o: $(DIR_SRC)%.cpp
 	$(CC) $(CFLAGS)  $<
-	
+
 clean:
 	@rm -rfv *.o
 
 docs: borradocs
 	doxygen INT2SVG.dox
-	
+
 borradocs:
-	@rm -rfv ./docs/*	
-	
-	
+	@rm -rfv ./docs/*

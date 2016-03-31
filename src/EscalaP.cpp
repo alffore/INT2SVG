@@ -64,7 +64,7 @@ void EscalaP::escalaPoligonal(Poligonal &pol) {
 */
 void EscalaP::obtenDimPols() {
 
-  cout << "DEBUG: obtenDimPols" << endl;
+  cout << "DEBUG: EscalaP::obtenDimPols" << endl;
   int cuenta = 0;
 
   double escala_x = 0;

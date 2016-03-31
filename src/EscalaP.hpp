@@ -15,12 +15,9 @@
 using namespace std;
 
 class EscalaP {
-private:
+protected:
   vector<Poligonal>* pvPol;
 
-  //dimensiones requeridas para el mapa en pixeles
-  double dimxp;
-  double dimyp;
 
 
   //vertices del mapa
@@ -41,18 +38,26 @@ private:
   double corx;
   double cory;
 
-  void obtenDimPols();
-  void obtenDimPol(Poligonal &pol, int cuenta);
+
 
 
   void escalaPoligonales();
   void escalaPoligonal(Poligonal& pol);
 
 
+
+  void obtenDimPol(Poligonal &pol, int cuenta);
+
+
+
 public:
+
+  //dimensiones requeridas para el mapa en pixeles
+  double dimxp;
+  double dimyp;
+
   EscalaP(vector<Poligonal>* pvPol, int dimx, int dimy);
-
-
+void obtenDimPols();
   void impParametrosE(string sarchivo);
 
 };

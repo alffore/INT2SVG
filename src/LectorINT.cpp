@@ -43,7 +43,7 @@ void LectorINT::inicializador(void) {
 }
 
 /**
- * 
+ *
  * @param scad
  */
 void LectorINT::parser(string scad) {
@@ -56,13 +56,13 @@ void LectorINT::parser(string scad) {
         int cam = atoi(vc[campo1].c_str());
 
         if (cam == campov || campov == 0) {
-            cout << "Campos: " << vc.size() << endl;
+            //cout << "Campos: " << vc.size() << endl;
 
             vector<Punto> vp;
 
             parserSPunto(vp, vc[2]);
 
-            cout << " #vertices: " << vp.size() << endl;
+            //cout << " #vertices: " << vp.size() << endl;
             Poligonal auxPol(vp, vc);
 
             vPol.push_back(auxPol);
@@ -73,7 +73,7 @@ void LectorINT::parser(string scad) {
 }
 
 /**
- * 
+ *
  * @param vP
  * @param scad
  */
@@ -97,7 +97,7 @@ void LectorINT::parserSPunto(vector<Punto>& vP, const string & scad) {
 }
 
 /**
- * 
+ *
  * @param theStringVector
  * @param theString
  * @param theDelimiter
@@ -119,13 +119,13 @@ void LectorINT::split(vector<string>& theStringVector, const string& theString, 
 }
 
 /**
- * 
+ *
  * @param p1
  * @param p2
- * @return 
+ * @return
  */
 bool LectorINT::ordenadorP(const Poligonal& p1, const Poligonal& p2){
-    
+
    return (p1.vp.size() > p2.vp.size());
-    
+
 }

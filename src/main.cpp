@@ -8,6 +8,7 @@
 #include "Poligonal.h"
 #include "LectorINT.h"
 #include "EscalaP.hpp"
+#include "EscalaPmin.hpp"
 #include "SalidaSVG.hpp"
 #include "GenCU.h"
 #include "LectorRes.h"
@@ -32,18 +33,23 @@ int main(int argc, char *argv[]) {
   int dimy = 0;
 
 
+  //variable para indicar auto-ajuste de dimensiones
+  int aa=0;
+
+
   if (argc < 3) {
 
-    cout << "Falta lista con archivo a procesar: polígonos-INT c1 c2 cv dimx dimy PATH_SALIDA RESTRICCIONES" << endl;
+    cout << "Falta lista con archivo a procesar: polígonos-INT c1 c2 cv dimx dimy PATH_SALIDA RESTRICCIONES AA" << endl;
     cout << "Donde: "<<endl;
     cout << "polígonos-INT: archivo en formato INT"<<endl;
     cout << "c1: clave principal (estado)"<<endl;
     cout << "c2: clave secundaria (municipio)"<<endl;
+    cout << "cv: clave seleccionada de filtro para c1"<<endl;
     cout << "dimx: dimensión x del mapa"<<endl;
     cout << "dimy: dimensión y del mapa"<<endl;
-    
-
-
+    cout << "PATH_SALIDA: directorio para las salidas"<<endl;
+    cout << "RESTRICCIONES: archivo que especifica regiones de exclusión (condiciones para polígonos municipales)"<<endl;
+    cout << "AA: parámetro de auto ajuste de dimensiones"<<endl;
     return 1;
   }
 
@@ -55,6 +61,14 @@ int main(int argc, char *argv[]) {
   dimx = atoi(argv[5]);
   dimy = atoi(argv[6]);
 
+
+  if(argc>8){
+    if(c1 != c2){
+      aa=0+atoi(argv[9]);
+    }else{
+      aa=0+atoi(argv[8]);
+    }
+  }
 
   //leemos el archivo INT
   cout << "Archivo INT: " << argv[1] << endl;
@@ -77,8 +91,18 @@ int main(int argc, char *argv[]) {
 
   //escalamos las poligonales
   cout << "Escalamos poligonos" << endl;
-  EscalaP escala(&lint.vPol, dimx, dimy);
-  escala.impParametrosE(string(SPATH) + string(argv[5]) + string("/") + string(argv[4]) + string(".pesc"));
+
+
+  if(aa==0){
+    EscalaP escala(&lint.vPol, dimx, dimy);
+    escala.impParametrosE(string(SPATH) + string(argv[5]) + string("/") + string(argv[4]) + string(".pesc"));
+  }else{
+    cout <<"auto-ajuste"<<endl;
+    EscalaPmin escala(&lint.vPol, dimx, dimy);
+    escala.impParametrosE(string(SPATH) + string(argv[5]) + string("/") + string(argv[4]) + string(".pesc"));
+    dimx=escala.dimxp;
+    dimy=escala.dimyp;
+  }
 
 
   //generamos la clave unica para poligonos
