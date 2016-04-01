@@ -23,6 +23,8 @@ using namespace std;
 */
 int main(int argc, char *argv[]) {
 
+  EscalaP * esc;
+
   //campos y valor para filtro
   int c1 = 0;
   int c2 = 0;
@@ -95,11 +97,16 @@ int main(int argc, char *argv[]) {
 
   if(aa==0){
     EscalaP escala(&lint.vPol, dimx, dimy);
+    escala.obtenDimPols();
+    escala.escalaPoligonales();
     escala.impParametrosE(string(SPATH) + string(argv[5]) + string("/") + string(argv[4]) + string(".pesc"));
   }else{
     cout <<"auto-ajuste"<<endl;
     EscalaPmin escala(&lint.vPol, dimx, dimy);
-    escala.impParametrosE(string(SPATH) + string(argv[5]) + string("/") + string(argv[4]) + string(".pesc"));
+    esc=&escala;
+    esc->obtenDimPols();
+    esc->escalaPoligonales();
+    esc->impParametrosE(string(SPATH) + string(argv[5]) + string("/") + string(argv[4]) + string(".pesc"));
     dimx=escala.dimxp;
     dimy=escala.dimyp;
   }

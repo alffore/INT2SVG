@@ -23,7 +23,7 @@ protected:
 
 public:
   EscalaPmin(vector<Poligonal>* pvPol, int dimx, int dimy) : EscalaP(pvPol,dimx,dimy){};
-void obtenDimPols();
+  void obtenDimPols();
 };
 
 

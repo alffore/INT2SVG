@@ -41,7 +41,7 @@ protected:
 
 
 
-  void escalaPoligonales();
+
   void escalaPoligonal(Poligonal& pol);
 
 
@@ -57,7 +57,10 @@ public:
   double dimyp;
 
   EscalaP(vector<Poligonal>* pvPol, int dimx, int dimy);
-void obtenDimPols();
+
+  virtual void obtenDimPols();
+  void escalaPoligonales();
+
   void impParametrosE(string sarchivo);
 
 };

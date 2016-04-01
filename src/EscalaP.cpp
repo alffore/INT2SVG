@@ -20,8 +20,8 @@ EscalaP::EscalaP(vector<Poligonal>* pvPol, int dimxp, int dimyp) {
   ygmin = 0;
 
 
-  obtenDimPols();
-  escalaPoligonales();
+  //obtenDimPols();
+  //escalaPoligonales();
 
 }
 
