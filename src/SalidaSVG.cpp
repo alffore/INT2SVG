@@ -35,7 +35,7 @@ void SalidaSVG::imprimeSVG(vector<Poligonal>& vPol) {
 
   fssal << "<defs><style type=\"text/css\">";
   fssal << "<![CDATA[ ";
-  fssal << "path{ fill: grey; stroke: #000000; stroke-width: .20 }";
+  fssal << "path{ fill: white; stroke: #000000; stroke-width: .20 }";
   fssal<<" ]]></style></defs><g>"<<endl;
 
   for (vector<Poligonal>::iterator it = vPol.begin(); it != vPol.end(); ++it) {
@@ -193,7 +193,7 @@ void SalidaSVG::imprimePoligonoPolyL(Poligonal& Pol) {
   if(cuenta>0){
     fssal << "\" />" << endl;
   }
-  
+
 }
 
 
