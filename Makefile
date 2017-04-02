@@ -31,7 +31,7 @@ DIR_OBJ= ./obj/
 
 all: clean $(OBJ)
 	$(CLINKER) $(DIR_BIN)int2svg.exe $(OBJ) $(LIBS) $(CFLAGS)
-
+	@rm -rf *.o
 
 
 %.o: $(DIR_SRC)%.cpp
