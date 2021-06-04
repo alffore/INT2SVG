@@ -43,15 +43,15 @@ int main(int argc, char *argv[]) {
 
     cout << "Falta lista con archivo a procesar: polígonos-INT c1 c2 cv dimx dimy PATH_SALIDA RESTRICCIONES AA" << endl;
     cout << "Donde: "<<endl;
-    cout << "polígonos-INT: archivo en formato INT"<<endl;
-    cout << "c1: clave principal (estado)"<<endl;
-    cout << "c2: clave secundaria (municipio)"<<endl;
-    cout << "cv: clave seleccionada de filtro para c1"<<endl;
-    cout << "dimx: dimensión x del mapa"<<endl;
-    cout << "dimy: dimensión y del mapa"<<endl;
-    cout << "PATH_SALIDA: directorio para las salidas"<<endl;
-    cout << "RESTRICCIONES: archivo que especifica regiones de exclusión (condiciones para polígonos municipales)"<<endl;
-    cout << "AA: parámetro de auto ajuste de dimensiones"<<endl;
+    cout << "1. polígonos-INT: archivo en formato INT"<<endl;
+    cout << "2. c1: clave principal (estado)"<<endl;
+    cout << "3. c2: clave secundaria (municipio)"<<endl;
+    cout << "4. cv: clave seleccionada de filtro para c1"<<endl;
+    cout << "5. dimx: dimensión x del mapa"<<endl;
+    cout << "6. dimy: dimensión y del mapa"<<endl;
+    cout << "7. PATH_SALIDA: directorio para las salidas"<<endl;
+    cout << "8. RESTRICCIONES: archivo que especifica regiones de exclusión (condiciones para polígonos municipales)"<<endl;
+    cout << "9. AA: parámetro de auto ajuste de dimensiones"<<endl;
     return 1;
   }
 
